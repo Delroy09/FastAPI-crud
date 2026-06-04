@@ -1,6 +1,6 @@
 import streamlit as st
 
-import gmodel as m
+import data_model as m
 
 st.write("First app")
 
