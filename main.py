@@ -1,5 +1,10 @@
 from fastapi import FastAPI
 from models import Product
+from database import session, engine
+import database_models
+
+
+database_models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -19,13 +24,15 @@ Product(id=3, name="Cake", number=872, price=100),
 Product(id=2, name="Meat", number=767, price=800)
 
 
-
 ]
 
 # Fetch Data
 
 @app.get("/stuff")
 def show_ALL_products():
+    db = session()
+    db.query()
+
     return products
 
 
