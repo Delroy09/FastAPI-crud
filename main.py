@@ -26,6 +26,20 @@ Product(id=2, name="Meat", number=767, price=800)
 
 ]
 
+#DB initialise
+
+def init_db():
+    db = session()
+
+    for product in products:
+        db.add(database_models.Product(**product.model_dump()))
+
+    db.commit()
+
+
+init_db()
+
+
 # Fetch Data
 
 @app.get("/stuff")
