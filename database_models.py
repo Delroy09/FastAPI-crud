@@ -4,7 +4,7 @@ from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
-
+# Create Product Base Class
 class Product(Base):
     
 

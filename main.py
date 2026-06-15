@@ -8,7 +8,7 @@ database_models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-
+# Fetch Data
 @app.get("/")
 def greet():
     return "Hello Delroy!"
@@ -28,14 +28,14 @@ Product(id=4, name="Bamboo", number=968, price=9000),
 
 ]
 
-#DB initialise
-
+# Database Initialise
 def init_db():
     db = session()
 
     count = db.query(database_models.Product).count()
 
-    if count==0:
+# Check if database is empty
+    if count == 0:
         for product in products:
             db.add(database_models.Product(**product.model_dump()))
         db.commit()
@@ -43,8 +43,7 @@ def init_db():
 
 init_db()
 
-# Fetch Data
-
+# Fetch All Data
 @app.get("/stuff")
 def show_ALL_products():
     db = session()
@@ -79,7 +78,7 @@ def update_product(id: int, product: Product):
     return {"message":"item not found"}
 
 
-#deleting data
+# Deleting Data
 
 @app.delete("/product/{id}")
 def delete_poduct(id: int):

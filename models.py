@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
 
+# Pydantic Model Creation
 
 class Product(BaseModel):
     id : int
