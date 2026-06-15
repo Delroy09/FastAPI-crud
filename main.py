@@ -17,11 +17,13 @@ def greet():
 
 products = [ 
 
-Product(id=1, name="Mobile", number=222, price=456),
+Product(id=1, name="Mobile", number=222, price=550),
 
-Product(id=3, name="Cake", number=872, price=100),
+Product(id=3, name="Cake", number=872, price=1209),
 
-Product(id=2, name="Meat", number=767, price=800)
+Product(id=2, name="Meat", number=767, price=1800),
+
+Product(id=4, name="Bamboo", number=968, price=9000),
 
 
 ]
@@ -31,14 +33,15 @@ Product(id=2, name="Meat", number=767, price=800)
 def init_db():
     db = session()
 
-    for product in products:
-        db.add(database_models.Product(**product.model_dump()))
+    count = db.query(database_models.Product).count()
 
-    db.commit()
+    if count==0:
+        for product in products:
+            db.add(database_models.Product(**product.model_dump()))
+        db.commit()
 
 
 init_db()
-
 
 # Fetch Data
 
